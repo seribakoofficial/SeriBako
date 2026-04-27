@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+    EDIT: Change the text in the title tag — shows in browser tab
+  ============================================================ -->
+  <title>Seri Bako — A Taste of Grace</title>
+  <meta name="description" content="Penang's Michelin-recognised heritage kuih and dessert brand. Rooted in Kwan Kee's legacy." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       COLOURS — Edit hex values here to change the whole colour scheme
+    ============================================================ */
+    :root {
+      --green-deep:   #0f1f0f;
+      --green-forest: #1a2e1a;
+      --green-mid:    #2d4a2d;
+      --gold:         #c9a84c;
+      --gold-light:   #e2c97e;
+      --cream:        #f5f0e8;
+      --cream-dim:    #a09880;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--green-deep);
+      color: var(--cream);
+      font-family: 'Lora', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: linear-gradient(to bottom, rgba(15,31,15,0.98), transparent);
+    }
+    .nav-logo {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.2rem; color: var(--gold);
+      letter-spacing: 0.08em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cream-dim); text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(45,74,45,0.4) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        var(--green-deep);
+    }
+    .hero-ornament {
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      margin-bottom: 2.5rem;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .hero-tag {
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 700;
+      color: var(--cream); line-height: 1.1; letter-spacing: 0.04em;
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 1s ease 0.5s forwards;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-sub {
+      font-style: italic; font-size: clamp(1rem, 2.2vw, 1.3rem);
+      color: var(--cream-dim); max-width: 520px; line-height: 1.7;
+      margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 1s ease 0.7s forwards;
+    }
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Cinzel', serif; font-size: 0.75rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--green-deep); background: var(--gold);
+      padding: 1rem 2.8rem; text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+    }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--cream-dim); opacity: 0.5;
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; padding: 3rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; max-width: 200px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1.2rem; }
+
+    /* SECTION BASE */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; display: block;
+    }
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      color: var(--cream); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-size: 1.05rem; line-height: 1.85;
+      color: var(--cream-dim); max-width: 600px;
+    }
+
+    /* STORY */
+    #story { background: var(--green-forest); }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .story-image-frame { position: relative; aspect-ratio: 4/5; }
+    .story-image-frame::before {
+      content: ''; position: absolute;
+      inset: -16px 16px 16px -16px;
+      border: 1px solid rgba(201,168,76,0.3); pointer-events: none;
+    }
+    /* ============================================================
+       EDIT: Replace the URL below with your own photo
+       You can use: background-image: url('your-photo.jpg');
+       if you upload a photo to the same folder as index.html
+    ============================================================ */
+    .story-image {
+      width: 100%; height: 100%;
+      background: var(--green-mid);
+      background-image: url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80');
+      background-size: cover; background-position: center;
+      display: flex; align-items: flex-end;
+    }
+    .story-image-caption {
+      width: 100%; padding: 1.5rem;
+      background: linear-gradient(to top, rgba(15,31,15,0.95), transparent);
+      font-family: 'Cinzel', serif; font-size: 0.62rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    }
+    .story-quote {
+      font-style: italic; font-size: 1.3rem; line-height: 1.7;
+      color: var(--gold-light); border-left: 2px solid var(--gold);
+      padding-left: 1.8rem; margin: 2rem 0;
+    }
+
+    /* PRODUCTS */
+    #products { background: var(--green-deep); }
+    .products-header { text-align: center; margin-bottom: 4rem; }
+    .products-header .section-body { margin: 0 auto; text-align: center; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .product-card { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+
+    /* ============================================================
+       EDIT: Replace each URL below with your own product photos
+       e.g. url('pandan-cake.jpg') if saved in same folder
+    ============================================================ */
+    .product-card:nth-child(1) { background: url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=80') center/cover; }
+    .product-card:nth-child(2) { background: url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&q=80') center/cover; }
+    .product-card:nth-child(3) { background: url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80') center/cover; }
+    .product-card:nth-child(4) { background: url('https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=400&q=80') center/cover; }
+    .product-card:nth-child(5) { background: url('https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=400&q=80') center/cover; }
+    .product-card:nth-child(6) { background: url('https://images.unsplash.com/photo-1559622214-f8a9850965bb?w=400&q=80') center/cover; }
+
+    .product-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,31,15,0.97) 0%, rgba(15,31,15,0.3) 50%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem 1.5rem; transform: translateY(40px); transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-overlay { transform: translateY(0); }
+    .product-name {
+      font-family: 'Cinzel', serif; font-size: 0.85rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .product-desc {
+      font-style: italic; font-size: 0.88rem; color: var(--cream-dim); line-height: 1.5;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    }
+    .product-card:hover .product-desc { opacity: 1; transform: translateY(0); }
+
+    /* ORDER */
+    #order { background: var(--green-forest); text-align: center; }
+    .order-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+    .order-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: var(--cream); margin-bottom: 1.2rem; line-height: 1.2;
+    }
+    .order-title span { color: var(--gold); }
+    .order-body { font-style: italic; font-size: 1rem; color: var(--cream-dim); line-height: 1.8; margin-bottom: 2.5rem; }
+    .order-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-deep); background: var(--gold);
+      padding: 1rem 2.5rem; text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); background: transparent;
+      border: 1px solid var(--gold);
+      padding: 1rem 2.5rem; text-decoration: none;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+
+    /* OUTLETS */
+    #outlets { background: var(--green-deep); }
+    .outlets-header { text-align: center; margin-bottom: 4rem; }
+    .outlets-header .section-body { margin: 0 auto; text-align: center; }
+    .outlets-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px; background: rgba(201,168,76,0.15);
+    }
+    .outlet-card {
+      background: var(--green-deep); padding: 2.5rem 2rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .outlet-card:hover { border-top-color: var(--gold); background: var(--green-forest); }
+    .outlet-number { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .outlet-name { font-family: 'Cinzel', serif; font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.8rem; }
+    .outlet-address { font-style: italic; font-size: 0.9rem; color: var(--cream-dim); line-height: 1.7; margin-bottom: 1.2rem; }
+    .outlet-hours { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.15em; color: var(--gold); }
+    /* ============================================================
+       EDIT: Replace href="#" with real Google Maps links
+       e.g. href="https://maps.google.com/?q=Gurney+Plaza+Penang"
+    ============================================================ */
+    .outlet-map {
+      display: inline-block; margin-top: 1rem;
+      font-family: 'Cinzel', serif; font-size: 0.62rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .outlet-map:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+    /* FOOTER */
+    footer { background: var(--green-forest); padding: 4rem 2rem 2.5rem; text-align: center; }
+    .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .footer-tagline { font-style: italic; font-size: 0.9rem; color: var(--cream-dim); margin-bottom: 2rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; list-style: none; margin-bottom: 2.5rem; }
+    /* ============================================================
+       EDIT: Replace # below with your real social/platform links
+    ============================================================ -->
+    */
+    .footer-links a {
+      font-family: 'Cinzel', serif; font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--cream-dim); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-divider { width: 60px; height: 1px; background: rgba(201,168,76,0.3); margin: 0 auto 1.5rem; }
+    .footer-copy { font-size: 0.78rem; color: var(--cream-dim); opacity: 0.5; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(-8px); }
+    }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .story-image-frame { aspect-ratio: 16/9; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+    NAV — Edit link labels if needed
+  ============================================================ -->
+  <nav>
+    <a class="nav-logo" href="#hero">Seri Bako</a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#products">Our Kuih</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="#outlets">Find Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+    HERO — EDIT: tagline, title, subtitle, button text
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+      <div class="hero-ornament"></div>
+      <!-- EDIT: Change this line e.g. "Michelin Recognised · Since 1980" -->
+      <span class="hero-tag">Michelin Recognised · Penang Heritage</span>
+      <h1 class="hero-title">Seri <span>Bako</span></h1>
+      <!-- EDIT: Change this subtitle -->
+      <p class="hero-sub">Handcrafted kuih and desserts rooted in Kwan Kee's legacy — where Penang tradition meets grace.</p>
+      <!-- EDIT: Change href to your Grab / order link or #order to scroll down -->
+      <a href="#order" class="hero-cta">Discover Our Kuih</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ============================================================
+    STORY — EDIT: heading, paragraphs, quote, image caption
+  ============================================================ -->
+  <section id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image-frame">
+          <div class="story-image">
+            <!-- EDIT: Change this caption text -->
+            <span class="story-image-caption">Kwan Kee's Legacy · Penang Heritage</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="section-label">Our Story</span>
+          <!-- EDIT: Change heading -->
+          <h2 class="section-title">A Heritage Worth Preserving</h2>
+          <!-- EDIT: Change body text -->
+          <p class="section-body">
+            Seri Bako was born from the legacy of Kwan Kee — one of Penang's most beloved heritage kuih makers. What began as a family craft passed down through generations has grown into a Michelin-recognised name, celebrated for its commitment to authenticity.
+          </p>
+          <!-- EDIT: Change quote -->
+          <blockquote class="story-quote">
+            "Every piece of kuih carries a memory. We are merely its custodians."
+          </blockquote>
+          <p class="section-body">
+            We believe that great kuih is not just food — it is culture, memory, and grace on a plate. Each recipe is preserved with intention, each ingredient chosen with care.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">✦</span></div>
+
+  <!-- ============================================================
+    PRODUCTS — EDIT: product names, descriptions
+    EDIT: product photos in CSS above (search "nth-child")
+  ============================================================ -->
+  <section id="products">
+    <div class="container">
+      <div class="products-header reveal">
+        <span class="section-label">Our Kuih</span>
+        <h2 class="section-title">Handcrafted, Every Morning</h2>
+        <p class="section-body">Each piece is made fresh daily, shaped by hands that know the craft. No shortcuts. No compromise.</p>
+      </div>
+      <div class="products-grid reveal">
+
+        <!-- EDIT: Change product name and description -->
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Pandan Layer Cake</div>
+            <div class="product-desc">Steamed in bamboo leaf, fragrant with fresh pandan — a Penang classic.</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Osmanthus Jelly</div>
+            <div class="product-desc">Delicate floral notes set in silky jelly — light, elegant, unforgettable.</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Durian Mochi</div>
+            <div class="product-desc">Premium Musang King durian wrapped in soft glutinous rice skin.</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Kuih Lapis</div>
+            <div class="product-desc">Nine patient layers of heritage — each one steamed with precision and love.</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Ang Ku Kuih</div>
+            <div class="product-desc">Soft glutinous skin filled with sweetened mung bean or peanut paste.</div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-overlay">
+            <div class="product-name">Lemang</div>
+            <div class="product-desc">Glutinous rice cooked in bamboo over an open flame — smoky, rich, traditional.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">✦</span></div>
+
+  <!-- ============================================================
+    ORDER CTA — EDIT: heading, body text, button links
+  ============================================================ -->
+  <section id="order">
+    <div class="order-inner reveal">
+      <span class="section-label">Order Now</span>
+      <h2 class="order-title">Bring <span>Seri Bako</span><br/>to Your Table</h2>
+      <!-- EDIT: Change this text -->
+      <p class="order-body">
+        Available at all five outlets across Malaysia, or order through GrabFood and Foodpanda for delivery straight to your door.
+      </p>
+      <div class="order-buttons">
+        <!-- EDIT: Replace # with your real GrabFood link -->
+        <a href="#" class="btn-primary">Order on GrabFood</a>
+        <!-- EDIT: Replace # with your real Foodpanda link -->
+        <a href="#" class="btn-outline">Order on Foodpanda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    OUTLETS — EDIT: name, address, hours, Google Maps link for each
+  ============================================================ -->
+  <section id="outlets">
+    <div class="container">
+      <div class="outlets-header reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Our Outlets</h2>
+        <p class="section-body">Five locations across Malaysia — each one carrying the same heritage, the same grace.</p>
+      </div>
+      <div class="outlets-grid reveal">
+
+        <div class="outlet-card">
+          <span class="outlet-number">01</span>
+          <!-- EDIT: outlet name, address, hours, map link -->
+          <div class="outlet-name">Gurney Plaza</div>
+          <div class="outlet-address">Persiaran Gurney,<br/>10250 Georgetown, Penang</div>
+          <div class="outlet-hours">Mon – Sun · 10am – 10pm</div>
+          <a href="#" class="outlet-map">Get Directions →</a>
+        </div>
+
+        <div class="outlet-card">
+          <span class="outlet-number">02</span>
+          <div class="outlet-name">Queensbay Mall</div>
+          <div class="outlet-address">100 Persiaran Bayan Indah,<br/>11900 Bayan Lepas, Penang</div>
+          <div class="outlet-hours">Mon – Sun · 10am – 10pm</div>
+          <a href="#" class="outlet-map">Get Directions →</a>
+        </div>
+
+        <div class="outlet-card">
+          <span class="outlet-number">03</span>
+          <div class="outlet-name">IOI City Mall, Puchong</div>
+          <div class="outlet-address">IOI Resort City,<br/>62502 Putrajaya, Selangor</div>
+          <div class="outlet-hours">Mon – Sun · 10am – 10pm</div>
+          <a href="#" class="outlet-map">Get Directions →</a>
+        </div>
+
+        <div class="outlet-card">
+          <span class="outlet-number">04</span>
+          <div class="outlet-name">Publika</div>
+          <div class="outlet-address">Solaris Dutamas,<br/>50480 Kuala Lumpur</div>
+          <div class="outlet-hours">Mon – Sun · 10am – 10pm</div>
+          <a href="#" class="outlet-map">Get Directions →</a>
+        </div>
+
+        <div class="outlet-card">
+          <span class="outlet-number">05</span>
+          <div class="outlet-name">Jakel Mall</div>
+          <div class="outlet-address">No. 2, Jalan Semarak,<br/>54000 Kuala Lumpur</div>
+          <div class="outlet-hours">Mon – Sun · 10am – 10pm</div>
+          <a href="#" class="outlet-map">Get Directions →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+    FOOTER — EDIT: social links, copyright year
+  ============================================================ -->
+  <footer>
+    <div class="footer-logo">Seri Bako</div>
+    <div class="footer-tagline">A Taste of Grace</div>
+    <ul class="footer-links">
+      <!-- EDIT: Replace # with your real links -->
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">GrabFood</a></li>
+      <li><a href="#">Foodpanda</a></li>
+    </ul>
+    <div class="footer-divider"></div>
+    <div class="footer-copy">© 2026 Seri Bako · All Rights Reserved</div>
+  </footer>
+
+  <script>
+    // Scroll reveal — no need to touch this
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
